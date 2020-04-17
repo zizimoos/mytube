@@ -1,0 +1,50 @@
+header.header
+    .header__wrapper
+            .mobileMenu#mobileMenuwindow 
+                .tryAngle
+                ul
+                    if !loggedUser
+                        li
+                            a(href=routes.join) Join
+                        li
+                            a(href=routes.login) Log In
+                    else 
+                        
+                        li
+                            a(href=`/videos${routes.upload}`) Upload
+                        li
+                            a(href=routes.record) Record
+                        li
+                            a(href=routes.me) Profile
+                        li
+                            a(href=routes.logout) LogOut
+            .header__column
+                i.fa.fa-bars#mobileMenuBar
+                                                    
+                a(href=routes.home)             
+                    i.fab.fa-youtube
+                    span.logo__text mTube
+            .header__column.header__column-search
+                form(action=routes.search, method="get")
+                     
+                    input(type="text", placeholder="Search by term...", name="term")
+                    i.fa.fa-search 
+            .header__column           
+                ul
+                    if !loggedUser
+                        li
+                            a(href=routes.join) Join
+                        li
+                            a(href=routes.login) Log In
+                    else 
+                        
+                        li
+                            a(href=`/videos${routes.upload}`) Upload
+                        li
+                            a(href=routes.record) Record
+                        li
+                            a(href=routes.me) Profile
+                        li
+                            a(href=routes.logout) Log Out
+
+

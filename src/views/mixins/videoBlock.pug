@@ -1,0 +1,19 @@
+mixin videoBlock(video={})
+    .videoBlock
+        a(href=routes.videoDetail(video.id))
+            video.videoBlock__thumnail(src=video.videoFile, controls="true")
+            //- h5.vidoeBlock__id= video.id
+            .videoBlock__info-box
+                .videoBlock__wrap
+                    .videoBlock__titie
+                        span= video.title.substr(0, 15)
+                        if(video.title.length > 15)
+                            span ... 
+                    .videoBlock__views= video.views
+                        //- span= video.views 
+                        |&nbsp;views
+                .vidoeBlock__main-description 
+                    span.vidoeBlock__description= video.description.substr(0,50)
+                    if(video.description.length > 50)
+                        span ...
+                    

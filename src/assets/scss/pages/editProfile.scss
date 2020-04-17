@@ -1,0 +1,28 @@
+.edit-profile__form {
+  margin-top: 50px;
+  .fileUpload {
+    height: 37px;
+    label {
+      font-size: 14px;
+      font-weight: 400;
+      padding-left: 0;
+    }
+    input {
+      margin-top: 0;
+      padding-top: 0px;
+    }
+  }
+  .edit-profile__changePassword {
+    width: 320px;
+    height: 27px;
+    border-radius: 5px;
+    text-align: center;
+
+    color: whitesmoke;
+    background-color: #323232;
+    vertical-align: middle;
+    font-weight: 400;
+
+    padding-top: 10px;
+  }
+}

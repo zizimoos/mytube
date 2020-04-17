@@ -1,0 +1,16 @@
+extends layouts/main.pug
+
+block content
+    .form-container
+        //- .record-container#jsRecordContainer
+        //-     video#jsVideoPreview
+        //-     button#jsRecordBtn Start Recording
+        .upload__header 
+            h3 Upload Video 
+        form(active=`/videos${routes.upload}`, method="post",enctype="multipart/form-data")
+            .fileUpload
+                label(for="file") Video File
+                input(type="file", name="videoFile",id="file", required=true, accept="video/*")
+            input(type="text",name="title", placeholder="Title", required=true)
+            textarea(name="description",placeholder="Description", cols="30", rows="10", required=true)
+            input(type="submit", value="Upload Video")

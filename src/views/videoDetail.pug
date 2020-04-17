@@ -1,0 +1,55 @@
+extends layouts/main.pug
+include mixins/videoPlayer
+
+block content
+    
+    .video-detail__container
+        +videoPlayer({
+                src:video.fileUrl
+            })
+        .video__info   
+            .title__view-wrap      
+                .video__title= video.title 
+                if video.views === 1
+                    span.video__views 1 view
+                else 
+                    span.video__views #{video.views} views
+            p.video_description= video.description 
+            .author__edit-wrap 
+                .video__author
+                    | Uploaded by &nbsp: &nbsp
+                    a.video__author-name(href=routes.userDetail(video.creator.id))= video.creator.name
+                    
+                if loggedUser && video.creator.id === loggedUser.id
+                    .editor__icon
+                        i.fa.fa-list
+                        
+                        a.video__edit-video(href=routes.editVideo(video.id)) Edit Video
+                        //- i.fab.fa-youtube
+        .video__comments
+            if video.comments.length === 1
+                .video__comment-number
+                    span#jsCommentNumber 1 
+                    | comment
+            else
+                .video__comment-number
+                    span#jsCommentNumber=video.comments.length
+                    |&nbsp;comments
+            form.add__comment#jsAddComment
+                input(type="text", placeholder="Add a comment")
+            ul.video__comment-list#jsCommentList
+                each comment in video.comments.reverse()
+                    li.comment__li(data-id=comment.id)
+                        .comment-info_box
+                            .comment__avatar__pic
+                                img.avatar-pic#commentPic(src= comment.avatarUrl) 
+                                //- span &nbsp  &nbsp
+                            .comment__author#commentAuthor= comment.author
+                            //- span &nbsp : &nbsp
+                            .comment__createAt= comment.createAt
+                                .modify
+                                    i.fa.fa-trash#commentDelete
+                                    //- i.fa.fa-list#commentEdit
+                        p.comment-text_box= comment.text
+                        
+        

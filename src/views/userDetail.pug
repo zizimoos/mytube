@@ -1,0 +1,31 @@
+extends layouts/main.pug
+include mixins/videoBlock
+include mixins/videoPlayer
+
+
+block content
+    .user-profile
+        .user-profile__header
+            if(loggedUser.id !== user.id)
+                img.u-avatar(src= user.avatarUrl) 
+                //- img.u-avatar(src= `/${user.avatarUrl}`)
+            if(loggedUser.id === user.id)
+                img.u-avatar(src= user.avatarUrl)      
+            h4.profile__username=user.name 
+            h4= user.email 
+           
+        //- if loggedUser && user.id === loggedUser.id
+        //-     .user-profile__btns
+        //-         a(href=`/users${routes.editProfile}`)
+        //-             button Edit Profile
+        //-         a(href=`/users${routes.changePassword}`)
+        //-             button Change Password
+        .user-videos
+            each item in videos
+                +videoBlock({
+                    id:item.id,
+                    videoFile: item.fileUrl,
+                    title: item.title,
+                    views: item.views,
+                    description: item.description
+                })

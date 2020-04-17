@@ -1,0 +1,11 @@
+.user-videos {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(150px, 1fr));
+  grid-gap: 8px;
+
+  .videoBlock:nth-child(1),
+  .videoBlock:nth-child(2),
+  .videoBlock:nth-child(3) {
+    grid-column: span 2;
+  }
+}

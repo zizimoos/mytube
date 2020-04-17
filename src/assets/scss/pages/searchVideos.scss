@@ -1,0 +1,26 @@
+.search__header {
+  margin: 0 auto;
+  font-size: 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  .fa.fa-search {
+    margin: 0 10px;
+  }
+  .search-term {
+    font-weight: 800;
+    color: rgb(86, 128, 255);
+  }
+}
+.search__videos {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(150px, 1fr));
+  grid-gap: 8px;
+
+  .videoBlock:nth-child(1),
+  .videoBlock:nth-child(2),
+  .videoBlock:nth-child(3) {
+    grid-column: span 2;
+  }
+}

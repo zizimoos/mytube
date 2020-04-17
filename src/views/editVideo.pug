@@ -1,0 +1,21 @@
+extends layouts/main.pug
+include mixins/videoPlayer
+
+block content
+    .video__player__edit
+        +videoPlayer({
+                    src:video.fileUrl
+                })
+        //- video(src=`/${video.fileUrl}`, controls="true", width=640)
+        
+    .form-container
+        .edit__header
+            
+            h3 Edit Video Information
+        form(action=routes.editVideo(video.id), method="post")
+            label Title
+            input(type="text", name="title",placeholder=`${video.title}`)
+            label Description
+            textarea(name="description",placeholder=`${video.description}`, cols="30", rows="5")
+            input.editVideo__submit(type="submit", value="Update Video")
+        a.form-container__link.form-container__link--delete(href=routes.deleteVideo(video.id)) Delete Video

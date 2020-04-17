@@ -1,0 +1,10 @@
+extends layouts/main.pug
+
+block content
+    .form-container
+        .record__header 
+            h3 Record Video
+        .record-container#jsRecordContainer
+            video#jsVideoPreview
+            button#jsRecordBtn Start Recording
+        h4 레코딩한 파일을 upload 메뉴에서 uploading 하시면 됩니다.   
