@@ -54,8 +54,7 @@ passport.use(
       callbackURL: process.env.PRODUCTION
         ? `https://safe-bayou-27063.herokuapp.com${routes.googleCallback}`
         : `http://localhost:4000${routes.googleCallback}`,
-      // profileFields: ["id", "displayName", "photos", "email"],
-      profileFields: ["id", "photos", "email"],
+      profileFields: ["id", "displayName", "photos", "email"],
       scope: ["profile", "email"],
     },
     googleLoginCallback
