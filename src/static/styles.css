@@ -990,7 +990,7 @@ input[type="submit"] {
 .video__player__edit {
   max-width: 720px;
   margin: 0 auto;
-  margin-top: 20px; }
+  margin-top: 50px; }
 
 .form-container .edit__header {
   margin: 0 auto;
