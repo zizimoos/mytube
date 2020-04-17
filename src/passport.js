@@ -36,7 +36,9 @@ passport.use(
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
       // callbackURL: `https://wonderful-warthog-64.localtunnel.me${routes.facebookCallback}`,
-      callbackURL: `https://safe-bayou-27063.herokuapp.com${routes.facebookCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://safe-bayou-27063.herokuapp.com${routes.facebookCallback}`
+        : `http://localhost:4000${routes.facebookCallback}`,
       profileFields: ["id", "displayName", "photos", "email"],
       scope: ["public_profile", "email"],
     },
@@ -49,8 +51,11 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `https://safe-bayou-27063.herokuapp.com${routes.googleCallback}`,
-      profileFields: ["id", "displayName", "photos", "email"],
+      callbackURL: process.env.PRODUCTION
+        ? `https://safe-bayou-27063.herokuapp.com${routes.googleCallback}`
+        : `http://localhost:4000${routes.googleCallback}`,
+      // profileFields: ["id", "displayName", "photos", "email"],
+      profileFields: ["id", "photos", "email"],
       scope: ["profile", "email"],
     },
     googleLoginCallback
@@ -62,7 +67,9 @@ passport.use(
     {
       clientID: process.env.KAKAO_CLIENT_ID,
       clientSecret: " ",
-      callbackURL: `https://safe-bayou-27063.herokuapp.com${routes.kakaoCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://safe-bayou-27063.herokuapp.com${routes.kakaoCallback}`
+        : `http://localhost:4000${routes.kakaoCallback}`,
       // profileFields: ["id", "displayName", "photos", "email"],
       scope: ["profile", "account_email "],
     },
