@@ -988,7 +988,7 @@ input[type="submit"] {
     grid-column: span 2; }
 
 .video__player__edit {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   margin-top: 50px; }
 
