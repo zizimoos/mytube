@@ -25,8 +25,8 @@ const handleDelete = (event) => {
     let id;
     if (elem.classList.contains("comment__li")) {
       id = elem.dataset.id;
-      console.log("====================", elem.dataset.creator);
-      console.log("+++++++++++++++++++++", elem.dataset.logged);
+      // console.log("====================", elem.dataset.creator);
+      // console.log("+++++++++++++++++++++", elem.dataset.logged);
       if (elem.dataset.creator === elem.dataset.logged) {
         elem.remove();
         sendDelete(id);
