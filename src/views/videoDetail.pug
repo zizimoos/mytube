@@ -39,7 +39,7 @@ block content
                 input(type="text", placeholder="Add a comment")
             ul.video__comment-list#jsCommentList
                 each comment in video.comments.reverse()
-                    li.comment__li(data-id=comment.id)
+                    li.comment__li(data-id=comment.id data-creator=comment.creato data-userID=userID)
                         .comment-info_box
                             .comment__avatar__pic
                                 img.avatar-pic#commentPic(src= comment.avatarUrl) 
@@ -47,6 +47,7 @@ block content
                             .comment__author#commentAuthor= comment.author
                             //- span &nbsp : &nbsp
                             .comment__createAt= comment.createAt
+                                //- comment.creator === loggedUser
                                 .modify
                                     i.fa.fa-trash#commentDelete
                                     //- i.fa.fa-list#commentEdit

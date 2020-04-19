@@ -14,7 +14,10 @@ const sendDelete = async (id) => {
   }
 };
 const handleDelete = (event) => {
-  console.log(event);
+  // 로그인된 유저와 커멘트를 쓴 아이디가 같아야만 delete
+  // 커맨트 creator === elem.dataset.creator
+  // loggedUser는?
+  console.log(event.target);
   let elem = event.target;
   console.log("COMMENT ID", elem);
   while (!elem.classList.contains("comment__li")) {

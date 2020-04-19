@@ -1,6 +1,7 @@
 import routes from "../routes";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
+// import { localsMiddleware } from "../middlewares";
 
 export const home = async (req, res) => {
   try {
@@ -56,13 +57,22 @@ export const videoDetail = async (req, res) => {
   // console.log("req.params", req.params);
   const {
     params: { id },
+    user: { id: userID },
   } = req;
+
   try {
     const video = await Video.findById(id)
       .populate("creator")
       .populate("comments");
-    // console.log(video);
-    res.render(`videoDetail`, { pagetitle: video.title, video });
+    console.log("loggedUser", userID, video.creator.id);
+    const commentOwnerID = video.creator.id;
+    // console.log(video.comments);
+    res.render(`videoDetail`, {
+      pagetitle: video.title,
+      video,
+      userID,
+      commentOwnerID,
+    });
   } catch (error) {
     console.log("error", error);
     res.redirect(routes.home);
