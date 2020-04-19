@@ -46,8 +46,6 @@ block content
                             .comment__author#commentAuthor= comment.author
                             //- span &nbsp : &nbsp
                             .comment__createAt= comment.createAt
-                            span= userID
-                            span= comment.creator
                                 if loggedUser && userID === comment.creator) 
                                     .modify
                                         i.fa.fa-trash#commentDelete
