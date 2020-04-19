@@ -57,20 +57,18 @@ export const videoDetail = async (req, res) => {
   // console.log("req.params", req.params);
   const {
     params: { id },
-    user: { id: userID },
   } = req;
 
   try {
     const video = await Video.findById(id)
       .populate("creator")
       .populate("comments");
-    console.log("loggedUser", userID, video, userID);
+    console.log("loggedUser", video);
     // const commentOwnerID = video.creator.id;
     // console.log(video.comments);
     res.render(`videoDetail`, {
       pagetitle: video.title,
       video,
-      userID,
     });
   } catch (error) {
     console.log("error", error);
