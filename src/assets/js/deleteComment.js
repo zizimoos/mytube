@@ -17,16 +17,22 @@ const handleDelete = (event) => {
   // 로그인된 유저와 커멘트를 쓴 아이디가 같아야만 delete
   // 커맨트 creator === elem.dataset.creator
   // loggedUser는?
-  console.log(event.target);
+  // console.log(event.target);
   let elem = event.target;
-  console.log("COMMENT ID", elem);
+  // console.log("COMMENT ID", elem);
   while (!elem.classList.contains("comment__li")) {
     elem = elem.parentNode;
     let id;
     if (elem.classList.contains("comment__li")) {
       id = elem.dataset.id;
-      elem.remove();
-      sendDelete(id);
+      console.log("====================", elem.dataset.creator);
+      console.log("+++++++++++++++++++++", elem.dataset.logged);
+      if (elem.dataset.creator === elem.dataset.logged) {
+        elem.remove();
+        sendDelete(id);
+      } else {
+        return;
+      }
     }
   }
 };

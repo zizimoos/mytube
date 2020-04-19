@@ -37,19 +37,21 @@ block content
             form.add__comment#jsAddComment
                 input(type="text", placeholder="Add a comment")
             ul.video__comment-list#jsCommentList
-                each comment in video.comments.reverse()
-                    li.comment__li(data-id=comment.id data-creator=comment.creator )
-                        .comment-info_box
-                            .comment__avatar__pic
-                                img.avatar-pic#commentPic(src= comment.avatarUrl) 
-                                //- span &nbsp  &nbsp
-                            .comment__author#commentAuthor= comment.author
-                            //- span &nbsp : &nbsp
-                            .comment__createAt= comment.createAt
-                                //- if loggedUser && loggedUser.id === comment.creator) 
-                                .modify
-                                    i.fa.fa-trash#commentDelete
-                                    //- i.fa.fa-list#commentEdit
-                        p.comment-text_box= comment.text
+                if loggedUser  
+                    each comment in video.comments.reverse()
+                        li.comment__li(data-id=comment.id data-creator=comment.creator data-logged=loggedUser.id)
+                            .comment-info_box
+                                .comment__avatar__pic
+                                    img.avatar-pic#commentPic(src= comment.avatarUrl) 
+                                    //- span &nbsp  &nbsp
+                                .comment__author#commentAuthor= comment.author
+                                //- span &nbsp : &nbsp
+                                .comment__createAt= comment.createAt                  
+                                    .modify
+                                        i.fa.fa-trash#commentDelete
+                                        //- i.fa.fa-list#commentEdit
+                            p.comment-text_box= comment.text
+                else
+                    return
                         
         
