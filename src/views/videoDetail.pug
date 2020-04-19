@@ -22,8 +22,7 @@ block content
                     
                 if loggedUser && video.creator.id === loggedUser.id
                     .editor__icon
-                        i.fa.fa-list
-                        
+                        i.fa.fa-list        
                         a.video__edit-video(href=routes.editVideo(video.id)) Edit Video
                         //- i.fab.fa-youtube
         .video__comments
@@ -39,7 +38,7 @@ block content
                 input(type="text", placeholder="Add a comment")
             ul.video__comment-list#jsCommentList
                 each comment in video.comments.reverse()
-                    li.comment__li(data-id=comment.id data-creator=comment.creato data-userID=userID)
+                    li.comment__li(data-id=comment.id data-creator=comment.creator data-userID=userID)
                         .comment-info_box
                             .comment__avatar__pic
                                 img.avatar-pic#commentPic(src= comment.avatarUrl) 
@@ -47,9 +46,11 @@ block content
                             .comment__author#commentAuthor= comment.author
                             //- span &nbsp : &nbsp
                             .comment__createAt= comment.createAt
-                                //- comment.creator === loggedUser
-                                .modify
-                                    i.fa.fa-trash#commentDelete
+                            span= userID
+                            span= comment.creator
+                                if loggedUser && userID === comment.creator) 
+                                    .modify
+                                        i.fa.fa-trash#commentDelete
                                     //- i.fa.fa-list#commentEdit
                         p.comment-text_box= comment.text
                         

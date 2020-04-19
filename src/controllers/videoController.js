@@ -64,14 +64,13 @@ export const videoDetail = async (req, res) => {
     const video = await Video.findById(id)
       .populate("creator")
       .populate("comments");
-    console.log("loggedUser", userID, video.creator.id);
-    const commentOwnerID = video.creator.id;
+    console.log("loggedUser", userID, video, userID);
+    // const commentOwnerID = video.creator.id;
     // console.log(video.comments);
     res.render(`videoDetail`, {
       pagetitle: video.title,
       video,
       userID,
-      commentOwnerID,
     });
   } catch (error) {
     console.log("error", error);
