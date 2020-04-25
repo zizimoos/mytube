@@ -677,6 +677,92 @@ input[type="submit"] {
     background-color: #444444;
     margin-bottom: 2px; }
 
+@-webkit-keyframes flashAnimation {
+  0% {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px); }
+  5% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px); }
+  95% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px); }
+  100% {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px); } }
+
+@-moz-keyframes flashAnimation {
+  0% {
+    -moz-transform: translateY(-100px);
+         transform: translateY(-100px); }
+  5% {
+    -moz-transform: translateY(0px);
+         transform: translateY(0px); }
+  95% {
+    -moz-transform: translateY(0px);
+         transform: translateY(0px); }
+  100% {
+    -moz-transform: translateY(-100px);
+         transform: translateY(-100px); } }
+
+@-o-keyframes flashAnimation {
+  0% {
+    -o-transform: translateY(-100px);
+       transform: translateY(-100px); }
+  5% {
+    -o-transform: translateY(0px);
+       transform: translateY(0px); }
+  95% {
+    -o-transform: translateY(0px);
+       transform: translateY(0px); }
+  100% {
+    -o-transform: translateY(-100px);
+       transform: translateY(-100px); } }
+
+@keyframes flashAnimation {
+  0% {
+    -webkit-transform: translateY(-100px);
+       -moz-transform: translateY(-100px);
+         -o-transform: translateY(-100px);
+            transform: translateY(-100px); }
+  5% {
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px); }
+  95% {
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px); }
+  100% {
+    -webkit-transform: translateY(-100px);
+       -moz-transform: translateY(-100px);
+         -o-transform: translateY(-100px);
+            transform: translateY(-100px); } }
+
+.flash-message__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  text-align: center;
+  z-index: 100;
+  -webkit-animation: flashAnimation 2s ease-in-out forwards;
+     -moz-animation: flashAnimation 2s ease-in-out forwards;
+       -o-animation: flashAnimation 2s ease-in-out forwards;
+          animation: flashAnimation 2s ease-in-out forwards; }
+  .flash-message__container.error {
+    background-color: 0; }
+  .flash-message__container.info {
+    background-color: yellowgreen; }
+  .flash-message__container.success {
+    background-color: dodgerblue; }
+  .flash-message__container .flash-message__text {
+    color: whitesmoke;
+    font-weight: 600; }
+
 .home-videos {
   margin-top: 50px;
   display: grid;

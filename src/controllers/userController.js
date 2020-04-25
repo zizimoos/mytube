@@ -11,6 +11,7 @@ export const postJoin = async (req, res, next) => {
     body: { name, email, password, vpassword },
   } = req;
   if (password !== vpassword) {
+    req.flash("error", "passwords don't match");
     res.status(400);
     res.render("join", { pagetitle: "Join" });
   } else {
@@ -34,6 +35,8 @@ export const getLogin = (req, res) =>
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home,
+  successFlash: "welcome",
+  failureFlash: "Can't log in. check email or password",
 });
 
 export const record = (req, res) => {
@@ -42,7 +45,10 @@ export const record = (req, res) => {
 
 // github
 
-export const githubLogin = passport.authenticate("github");
+export const githubLogin = passport.authenticate("github", {
+  successFlash: "welcome",
+  failureFlash: "Can't log in. check email or password",
+});
 export const githubLoginCallback = async (_, __, profile, cb) => {
   // console.log(profile);
   const {
@@ -102,7 +108,10 @@ export const postFacebookLogin = (req, res) => {
 
 // google
 
-export const googleLogin = passport.authenticate("google");
+export const googleLogin = passport.authenticate("google", {
+  successFlash: "welcome",
+  failureFlash: "Can't log in. check email or password",
+});
 export const googleLoginCallback = async (_, __, profile, cb) => {
   console.log(profile);
   const {
@@ -132,7 +141,10 @@ export const postGoogleLogin = (req, res) => {
 
 // kakao
 
-export const kakaoLogin = passport.authenticate("kakao");
+export const kakaoLogin = passport.authenticate("kakao", {
+  successFlash: "welcome",
+  failureFlash: "Can't log in. check email or password",
+});
 export const kakaoLoginCallback = async (_, __, profile, cb) => {
   console.log(profile);
   const {
@@ -166,6 +178,7 @@ export const postKakaoLogin = (req, res) => {
 
 export const logout = (req, res) => {
   // ToDo : precess Log Out
+  req.flash("info", "Logged Out");
   req.logout();
   res.redirect(routes.home);
 };
@@ -206,6 +219,7 @@ export const userDetail = async (req, res) => {
       });
     }
   } catch (error) {
+    req.flash("error", "User not found");
     res.redirect(routes.home);
   }
 };
@@ -223,7 +237,9 @@ export const postEditProfile = async (req, res) => {
       email,
       avatarUrl: file ? file.location : req.user.avatarUrl,
     });
+    req.flash("success", "Profile updated");
   } catch (error) {
+    req.flash("error", "Can't update profiles");
     res.redirect(routes.home);
   }
   res.redirect(routes.home);
@@ -242,6 +258,7 @@ export const postChangePassword = async (req, res) => {
   } = req;
   try {
     if (newPassword !== verifyPassword) {
+      req.flash("error", "password don't match");
       res.status(400);
       res.redirect(routes.changePassword);
       return;
@@ -249,6 +266,7 @@ export const postChangePassword = async (req, res) => {
     await req.user.changePassword(oldPassword, newPassword);
     res.redirect(routes.me);
   } catch (error) {
+    req.flash("error", "Can't change password");
     res.status(400);
     res.redirect(routes.editProfile);
   }
